@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Your Cart | 3 Studio Kuwait</title>
+<meta name="description" content="Review items in your cart before checkout." />
+<link rel="icon" href="assets/logo/logo.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="css/variables.css" />
+<link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/global.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/components.css" />
+<link rel="stylesheet" href="css/shop.css" />
+<link rel="stylesheet" href="css/responsive.css" />
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+<style>
+  .cart-page-layout { display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px; align-items: start; padding: 10px 0 80px; }
+  .cart-page-items-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 8px 22px; }
+  #cart-page-items .cart-row { grid-template-columns: 88px 1fr; }
+  #cart-page-items .cart-row img { width: 88px; height: 88px; }
+  @media (max-width: 1023px) { .cart-page-layout { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-page="cart">
+<div id="site-header"></div>
+
+<main>
+  <nav class="breadcrumbs container" id="breadcrumbs" aria-label="Breadcrumb"></nav>
+  <div class="container">
+    <h1 class="section-title" style="margin-bottom:6px;">YOUR CART</h1>
+  </div>
+
+  <div class="container cart-page-layout">
+    <div>
+      <div id="cart-page-empty" class="empty-state" style="display:none;">
+        <div class="empty-icon">🛒</div>
+        <p class="empty-title" data-i18n="cart_empty">Your cart is empty</p>
+        <p class="empty-sub">Browse our products and add something you like.</p>
+        <a href="3d-prints.html" class="btn btn-primary">Continue Shopping</a>
+      </div>
+      <div class="cart-page-items-card">
+        <div id="cart-page-items"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:18px;flex-wrap:wrap;gap:12px;">
+        <a href="3d-prints.html" class="btn btn-outline">← Continue Shopping</a>
+        <button class="btn btn-ghost" id="clear-cart-btn">Clear Cart</button>
+      </div>
+    </div>
+
+    <aside id="cart-summary" class="card" style="padding:26px;">
+      <h3 style="margin-bottom:18px;">Order Summary</h3>
+      <div class="cart-summary-row"><span data-i18n="cart_subtotal">Subtotal</span><span id="summary-subtotal">KD 0.000</span></div>
+      <div class="cart-summary-row"><span data-i18n="cart_delivery">Delivery</span><span id="summary-delivery">KD 0.000</span></div>
+      <p id="free-delivery-note" class="hint" style="margin:8px 0;color:var(--text-secondary);font-size:12.5px;"></p>
+      <div class="cart-summary-row cart-summary-total"><span data-i18n="cart_total">Total</span><span id="summary-total">KD 0.000</span></div>
+      <a href="checkout.html" class="btn btn-primary btn-block btn-lg" style="margin-top:20px;" data-i18n="cart_checkout">Checkout</a>
+    </aside>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/translations.js"></script>
+<script src="js/products.js"></script>
+<script src="js/favorites.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/orders.js"></script>
+<script src="js/whatsapp.js"></script>
+<script src="js/app.js"></script>
+<script src="js/cart-page.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    initBreadcrumbs([{ label: "Home", href: "index.html" }, { label: "Cart", href: "cart.html" }]);
+    const note = qs("#free-delivery-note");
+    if (note) note.textContent = `Free delivery on orders over ${formatKWD(CONFIG.freeDeliveryThreshold)}`;
+  });
+</script>
+</body>
+</html>

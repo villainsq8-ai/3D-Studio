@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Customize Your Own | 3 Studio Kuwait</title>
+<meta name="description" content="Send us your idea — upload a photo or file, describe what you want, and we'll contact you with a quotation." />
+<link rel="icon" href="assets/logo/logo.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="css/variables.css" />
+<link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/global.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/components.css" />
+<link rel="stylesheet" href="css/shop.css" />
+<link rel="stylesheet" href="css/responsive.css" />
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+</head>
+<body data-page="customize">
+<div id="site-header"></div>
+
+<main>
+  <nav class="breadcrumbs container" id="breadcrumbs" aria-label="Breadcrumb"></nav>
+
+  <section class="shop-hero">
+    <div class="container">
+      <span class="kicker" style="color:var(--cyan)">CUSTOM STUDIO</span>
+      <h1>YOUR IDEA.<br/>OUR CREATION.</h1>
+      <p class="section-sub">Upload your idea, describe what you want, and we'll contact you with a quotation.</p>
+    </div>
+  </section>
+
+  <div class="container" style="padding-bottom:80px;">
+    <form id="custom-order-form" novalidate>
+
+      <div class="studio-card">
+        <h3><span class="num">1</span> WHAT WOULD YOU LIKE TO CREATE?</h3>
+        <div class="type-card-grid" id="custom-type-cards">
+          <button type="button" class="type-card" data-type="3D Print"><div class="type-icon">◈</div><h4>3D PRINT</h4></button>
+          <button type="button" class="type-card" data-type="Neon Sign"><div class="type-icon">✦</div><h4>NEON SIGN</h4></button>
+          <button type="button" class="type-card" data-type="Car Accessory"><div class="type-icon">🚗</div><h4>CAR ACCESSORY</h4></button>
+          <button type="button" class="type-card" data-type="Business Logo"><div class="type-icon">🏢</div><h4>BUSINESS LOGO</h4></button>
+          <button type="button" class="type-card" data-type="Gaming Setup"><div class="type-icon">🎮</div><h4>GAMING SETUP</h4></button>
+          <button type="button" class="type-card" data-type="Café / Restaurant"><div class="type-icon">☕</div><h4>CAFÉ / RESTAURANT</h4></button>
+          <button type="button" class="type-card" data-type="Event / Booth"><div class="type-icon">🎪</div><h4>EVENT / BOOTH</h4></button>
+          <button type="button" class="type-card" data-type="Other"><div class="type-icon">✎</div><h4>OTHER</h4></button>
+        </div>
+        <input type="hidden" id="custom-type-value" name="type" />
+        <p class="field-error" id="type-error" style="display:none;margin-top:10px;">Please select what you'd like to create.</p>
+      </div>
+
+      <div class="studio-card">
+        <h3><span class="num">2</span> YOUR DETAILS</h3>
+        <div class="form-row">
+          <div class="field">
+            <label>Full Name <span class="req">*</span></label>
+            <input type="text" name="name" />
+            <p class="field-error" data-error-for="name">This field is required.</p>
+          </div>
+          <div class="field">
+            <label>Mobile Number <span class="req">*</span></label>
+            <input type="tel" name="phone" value="+965 " />
+            <p class="field-error" data-error-for="phone">This field is required.</p>
+          </div>
+        </div>
+        <div class="field"><label>Email</label><input type="email" name="email" /></div>
+        <div class="field" style="margin-bottom:0;">
+          <label>Describe Your Idea <span class="req">*</span></label>
+          <textarea name="description" placeholder="Tell us what you would like us to create..."></textarea>
+          <p class="field-error" data-error-for="description">This field is required.</p>
+        </div>
+      </div>
+
+      <div class="studio-card">
+        <h3><span class="num">3</span> UPLOAD YOUR DESIGN OR REFERENCE</h3>
+        <div class="upload-dropzone" id="upload-dropzone" tabindex="0" role="button" aria-label="Upload files">
+          <div class="upload-icon">⬆</div>
+          <h4>Drag & drop files here, or click to browse</h4>
+          <p>JPG, PNG, WEBP, PDF, SVG, STL, OBJ, 3MF — multiple files allowed</p>
+        </div>
+        <input type="file" id="upload-input" multiple hidden accept=".jpg,.jpeg,.png,.webp,.pdf,.svg,.stl,.obj,.3mf" />
+        <div class="upload-list" id="upload-list"></div>
+      </div>
+
+      <div class="studio-card">
+        <h3><span class="num">4</span> DIMENSIONS</h3>
+        <div class="form-row-3">
+          <div class="field"><label>Width</label><input type="number" min="0" name="width" class="dims-field" /></div>
+          <div class="field"><label>Height</label><input type="number" min="0" name="height" class="dims-field" /></div>
+          <div class="field"><label>Depth</label><input type="number" min="0" name="depth" class="dims-field" /></div>
+        </div>
+        <div class="field" style="max-width:200px;">
+          <label>Unit</label>
+          <select name="unit"><option value="cm">cm</option><option value="mm">mm</option></select>
+        </div>
+        <label class="checkbox-row"><input type="checkbox" id="dims-unknown" /> I don't know the dimensions — please advise me</label>
+      </div>
+
+      <div class="studio-card">
+        <h3><span class="num">5</span> QUANTITY & BUDGET</h3>
+        <div class="option-group">
+          <label>Quantity</label>
+          <div class="qty-stepper">
+            <button type="button" id="custom-qty-minus" aria-label="Decrease quantity">−</button>
+            <span id="custom-qty-value">1</span>
+            <button type="button" id="custom-qty-plus" aria-label="Increase quantity">+</button>
+          </div>
+        </div>
+        <div class="option-group">
+          <label>Estimated Budget (optional)</label>
+          <div class="chip-row" id="budget-options">
+            <button type="button" class="chip-option" data-value="Under KD 10">Under KD 10</button>
+            <button type="button" class="chip-option" data-value="KD 10–25">KD 10–25</button>
+            <button type="button" class="chip-option" data-value="KD 25–50">KD 25–50</button>
+            <button type="button" class="chip-option" data-value="KD 50–100">KD 50–100</button>
+            <button type="button" class="chip-option" data-value="KD 100–250">KD 100–250</button>
+            <button type="button" class="chip-option" data-value="KD 250+">KD 250+</button>
+            <button type="button" class="chip-option" data-value="Not Sure">Not Sure</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="studio-card">
+        <h3><span class="num">6</span> WHEN DO YOU NEED IT?</h3>
+        <div class="form-row" style="align-items:end;">
+          <div class="field"><label>Deadline</label><input type="date" id="deadline-date" /></div>
+          <label class="checkbox-row" style="margin-bottom:18px;"><input type="checkbox" id="no-deadline" /> No specific deadline</label>
+        </div>
+      </div>
+
+      <div class="studio-card">
+        <h3><span class="num">7</span> DELIVERY METHOD</h3>
+        <div class="radio-card-row">
+          <label class="radio-card"><input type="radio" name="custom-delivery" value="Kuwait Delivery" checked /> <span>Kuwait Delivery</span></label>
+          <label class="radio-card"><input type="radio" name="custom-delivery" value="Pickup" /> <span>Pickup</span></label>
+          <label class="radio-card"><input type="radio" name="custom-delivery" value="Discuss Later" /> <span>Discuss Later</span></label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-neon btn-lg btn-block" style="margin-top:10px;">SUBMIT CUSTOM ORDER</button>
+    </form>
+  </div>
+</main>
+
+<div class="modal-overlay" id="custom-confirm-modal">
+  <div class="modal success-modal">
+    <div class="success-icon">✓</div>
+    <h3>YOUR REQUEST HAS BEEN RECEIVED</h3>
+    <div class="order-id-tag" id="custom-confirm-id">CST-2026-00000</div>
+    <p>We'll review your idea and contact you with pricing and production details.</p>
+    <div class="modal-actions-col">
+      <button class="btn btn-primary" id="custom-confirm-view">VIEW MY ORDER</button>
+      <button class="btn btn-outline" id="custom-confirm-whatsapp">SEND TO WHATSAPP</button>
+      <button class="btn btn-ghost" id="custom-confirm-close">Close</button>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+
+<script src="js/translations.js"></script>
+<script src="js/products.js"></script>
+<script src="js/favorites.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/orders.js"></script>
+<script src="js/whatsapp.js"></script>
+<script src="js/app.js"></script>
+<script src="js/custom-orders.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    initBreadcrumbs([{ label: "Home", href: "index.html" }, { label: "Customize Your Own", href: "customize.html" }]);
+  });
+</script>
+</body>
+</html>

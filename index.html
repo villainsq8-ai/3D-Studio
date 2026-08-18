@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Custom 3D Printing & Neon Signs Kuwait | 3 Studio</title>
+<meta name="description" content="Premium custom 3D printing and neon light studio in Kuwait. Shop ready-made 3D prints and neon signs, or send us your own idea for a quotation." />
+<meta property="og:title" content="3 Studio — Custom 3D Printing & Neon Signs, Kuwait" />
+<meta property="og:description" content="Design it. We make it. Custom 3D prints and neon creations built around your ideas." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="assets/logo/logo.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="css/variables.css" />
+<link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/global.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/components.css" />
+<link rel="stylesheet" href="css/shop.css" />
+<link rel="stylesheet" href="css/responsive.css" />
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+</head>
+<body data-page="home">
+<div id="site-header"></div>
+
+<main>
+  <!-- ============================================================ HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="kicker" data-i18n="hero_kicker">3D PRINTING • CUSTOM NEON</span>
+        <h1 class="hero-title">
+          <span data-i18n="hero_title_1">DESIGN IT.</span><br />
+          <span class="accent" data-i18n="hero_title_2">WE MAKE IT.</span>
+        </h1>
+        <p class="hero-sub" data-i18n="hero_sub">Custom 3D prints and neon creations built around your ideas. From gaming setups and car accessories to business logos, cafés, offices and one-of-a-kind designs.</p>
+        <div class="hero-actions">
+          <a href="3d-prints.html" class="btn btn-primary btn-lg" data-i18n="hero_cta_3d">SHOP 3D PRINTS</a>
+          <a href="neon.html" class="btn btn-outline btn-lg" data-i18n="hero_cta_neon">SHOP NEON LIGHTS</a>
+        </div>
+        <a href="customize.html" class="link-arrow" data-i18n="hero_cta_custom">CREATE YOUR OWN →</a>
+
+        <div class="benefits" style="margin-top:44px;">
+          <div class="benefit"><div class="benefit-icon">★</div><div><h4>Premium Quality</h4><p>Durable materials and precise finishing</p></div></div>
+          <div class="benefit"><div class="benefit-icon">◈</div><div><h4>Custom Made</h4><p>Your idea. Our creation.</p></div></div>
+          <div class="benefit"><div class="benefit-icon">▲</div><div><h4>Kuwait Delivery</h4><p>Delivery available across Kuwait</p></div></div>
+          <div class="benefit"><div class="benefit-icon">◍</div><div><h4>Made to Order</h4><p>Choose a product or create something custom</p></div></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-visual-glow"></div>
+        <div class="hero-pedestal">
+          <img src="assets/3d/deck-boxes/deck-box-01.jpg" alt="Custom 3D printed trading card deck box" data-fallback-label="Custom Deck Box" data-fallback-theme="orange" />
+          <div class="hero-float-tag">CUSTOM MADE<span>3D PRINTED</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================== EXPLORE CREATIONS -->
+  <section class="section section-alt" id="explore">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="kicker">Explore</span>
+        <h2 class="section-title">EXPLORE OUR CREATIONS</h2>
+      </div>
+      <div class="category-cards">
+        <a href="3d-prints.html" class="category-card orange" data-reveal>
+          <div class="category-card-icon">◈</div>
+          <h3>3D PRINTS</h3>
+          <p>Functional, decorative and completely custom 3D printed products.</p>
+          <span class="btn btn-primary">EXPLORE 3D PRINTS</span>
+        </a>
+        <a href="neon.html" class="category-card neon" data-reveal>
+          <div class="category-card-icon">✦</div>
+          <h3>NEON LIGHTS</h3>
+          <p>Custom neon signs for homes, gaming rooms, offices, cafés, restaurants, booths and events.</p>
+          <span class="btn btn-neon">EXPLORE NEON</span>
+        </a>
+        <a href="customize.html" class="category-card cyan" data-reveal>
+          <div class="category-card-icon">✎</div>
+          <h3>CUSTOMIZE YOUR OWN</h3>
+          <p>Have an idea that doesn't exist yet? Send us your concept and we'll help bring it to life.</p>
+          <span class="btn btn-outline">START CUSTOM ORDER</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================= FEATURED 3D PRINTS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head" data-reveal style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:14px;">
+        <div><span class="kicker">3D Prints</span><h2 class="section-title">FEATURED 3D PRINTS</h2></div>
+        <a href="3d-prints.html" class="link-arrow">VIEW ALL 3D PRINTS →</a>
+      </div>
+      <div class="product-grid" id="featured-3d-grid" data-reveal></div>
+    </div>
+  </section>
+
+  <!-- =================================================== FEATURED NEON -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head" data-reveal style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:14px;">
+        <div><span class="kicker" style="color:var(--purple)">Neon</span><h2 class="section-title">FEATURED NEON</h2></div>
+        <a href="neon.html" class="link-arrow">VIEW ALL NEON →</a>
+      </div>
+      <div class="product-grid" id="featured-neon-grid" data-reveal></div>
+    </div>
+  </section>
+
+  <!-- ================================================== HOW IT WORKS -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-head text-center" data-reveal>
+        <span class="kicker">Process</span>
+        <h2 class="section-title">HOW IT WORKS</h2>
+      </div>
+      <div class="how-steps" data-reveal>
+        <div class="how-step">
+          <div class="how-step-num">01</div>
+          <div class="how-step-icon">✎</div>
+          <h4>CHOOSE OR CUSTOMIZE</h4>
+          <p>Pick a product or send your own idea.</p>
+          <span class="how-arrow">›</span>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">02</div>
+          <div class="how-step-icon">☎</div>
+          <h4>SEND YOUR DESIGN</h4>
+          <p>Upload a photo, logo, sketch or file.</p>
+          <span class="how-arrow">›</span>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">03</div>
+          <div class="how-step-icon">✓</div>
+          <h4>WE CONFIRM & CREATE</h4>
+          <p>We review, confirm details and start creating.</p>
+          <span class="how-arrow">›</span>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">04</div>
+          <div class="how-step-icon">▲</div>
+          <h4>DELIVERED TO YOU</h4>
+          <p>Carefully packed and delivered to your door.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================ RECENT CREATIONS -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head" data-reveal style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:14px;">
+        <div><span class="kicker">Portfolio</span><h2 class="section-title">RECENT CREATIONS</h2></div>
+        <a href="gallery.html" class="link-arrow">VIEW ALL PROJECTS →</a>
+      </div>
+      <div class="featured-strip" data-reveal>
+        <div class="featured-card"><img src="assets/3d/deck-boxes/deck-box-01.jpg" alt="Custom deck box" data-fallback-label="Deck Box" data-fallback-theme="orange"/><div class="cap">Custom Deck Box</div></div>
+        <div class="featured-card"><img src="assets/neon/gaming/neon-gamer-name-01.jpg" alt="Gaming neon" data-fallback-label="Gaming Neon" data-fallback-theme="neon"/><div class="cap">Gaming Name Neon</div></div>
+        <div class="featured-card"><img src="assets/3d/car/car-phone-holder-01.jpg" alt="Car accessory" data-fallback-label="Car Accessory" data-fallback-theme="orange"/><div class="cap">Car Phone Holder</div></div>
+        <div class="featured-card"><img src="assets/neon/cafe/neon-cafe-quote-01.jpg" alt="Café neon" data-fallback-label="Café Neon" data-fallback-theme="neon"/><div class="cap">Café Wall Neon</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================== CAR ACCESSORIES -->
+  <section class="section">
+    <div class="container car-feature">
+      <div data-reveal>
+        <div class="masonry" style="columns:2 160px;">
+          <div class="masonry-item"><img src="assets/3d/car/car-phone-holder-01.jpg" alt="Car phone holder" data-fallback-label="Phone Holder" data-fallback-theme="orange"/></div>
+          <div class="masonry-item"><img src="assets/3d/car/car-cup-organizer-01.jpg" alt="Car cup organizer" data-fallback-label="Cup Organizer" data-fallback-theme="orange"/></div>
+        </div>
+      </div>
+      <div data-reveal>
+        <span class="kicker">For Your Vehicle</span>
+        <h2 class="section-title">3D PRINTED FOR YOUR CAR</h2>
+        <p class="section-sub">Custom holders, clips, organizers and replacement pieces designed around your vehicle.</p>
+        <a href="customize.html?type=Car%20Accessory" class="btn btn-primary" style="margin-top:24px;">CREATE A CAR PART</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== FOR BUSINESS -->
+  <section class="section section-alt">
+    <div class="container business-grid">
+      <div data-reveal>
+        <span class="kicker">For Business</span>
+        <h2 class="section-title">YOUR BRAND.<br/>MADE TO STAND OUT.</h2>
+        <p class="section-sub">Custom signs, logos and fabricated products for offices, restaurants, cafés, events, booths and retail spaces.</p>
+        <div class="business-tag-grid">
+          <div class="business-tag">OFFICES</div><div class="business-tag">CAFÉS</div><div class="business-tag">RESTAURANTS</div>
+          <div class="business-tag">EVENTS</div><div class="business-tag">EXHIBITIONS</div><div class="business-tag">RETAIL</div>
+        </div>
+        <a href="customize.html?type=Business%20Logo" class="btn btn-neon">REQUEST BUSINESS QUOTE</a>
+      </div>
+      <div class="before-after" data-reveal>
+        <img class="before-layer" src="assets/neon/office/neon-office-reception-before.jpg" alt="Office wall before neon logo" data-fallback-label="Before" data-fallback-theme="default"/>
+        <img class="after-layer" src="assets/neon/office/neon-office-reception-01.jpg" alt="Office wall after neon logo installed" data-fallback-label="After — Neon Logo" data-fallback-theme="neon"/>
+        <div class="before-after-handle"></div>
+        <span class="ba-tag before">BEFORE</span>
+        <span class="ba-tag after">AFTER</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================== CUSTOMER REVIEWS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head text-center" data-reveal>
+        <span class="kicker">Reviews</span>
+        <h2 class="section-title">WHAT CUSTOMERS SAY</h2>
+      </div>
+      <div class="review-grid" data-reveal>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"The deck box came out exactly how I imagined it — clean finish and fast turnaround."</p>
+          <div class="review-author"><div class="review-avatar">M</div><div><div class="review-name">Mohammad A.</div><div class="review-demo-tag">Demo review</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Our café's neon logo gets photographed by customers every day. Great communication throughout."</p>
+          <div class="review-author"><div class="review-avatar">S</div><div><div class="review-name">Sara K.</div><div class="review-demo-tag">Demo review</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Sent them a broken car part and they reprinted it perfectly. Saved me a dealership visit."</p>
+          <div class="review-author"><div class="review-avatar">Y</div><div><div class="review-name">Yousef H.</div><div class="review-demo-tag">Demo review</div></div></div>
+        </div>
+      </div>
+      <p class="demo-content-note">These are sample/demo reviews shown for prototype purposes until real customer reviews are added.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================= FAQ -->
+  <section class="section section-alt" id="faq">
+    <div class="container">
+      <div class="section-head text-center" data-reveal>
+        <span class="kicker">FAQ</span>
+        <h2 class="section-title">FREQUENTLY ASKED QUESTIONS</h2>
+      </div>
+      <div class="faq-list" data-reveal>
+        <div class="accordion-item">
+          <button class="accordion-trigger">Can you make a completely custom 3D product?<span class="plus">+</span></button>
+          <div class="accordion-panel"><p>Yes — send us your idea, reference photos or files through the Customize page and we'll confirm feasibility and pricing.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">What files can I upload?<span class="plus">+</span></button>
+          <div class="accordion-panel"><p>JPG, PNG, WEBP, PDF, SVG, STL, OBJ and 3MF files are all accepted.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">Can you recreate a broken plastic part?<span class="plus">+</span></button>
+          <div class="accordion-panel"><p>In many cases yes — send photos and measurements and we'll advise whether it can be reprinted.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">Can you make car accessories?<span class="plus">+</span></button>
+          <div class="accordion-panel"><p>Yes, we design custom holders, organizers, clips and dashboard accessories fitted to your vehicle.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">Can you create my company logo in neon?<span class="plus">+</span></button>
+          <div class="accordion-panel"><p>Yes — send your logo file and we'll quote a neon version sized for your space.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">How long does production take?<span class="plus">+</span></button>
+          <div class="accordion-panel"><p>Most standard items take a few working days; custom and neon projects are quoted with a production timeline.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">Do you deliver in Kuwait?<span class="plus">+</span></button>
+          <div class="accordion-panel"><p>Yes, delivery is available across Kuwait, or you can choose pickup at checkout.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">Can I order multiple units?<span class="plus">+</span></button>
+          <div class="accordion-panel"><p>Yes, quantity can be adjusted on any product page or in your cart.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">Can businesses request bulk orders?<span class="plus">+</span></button>
+          <div class="accordion-panel"><p>Yes — use "Request Bulk Pricing" on any product or the business quote button above.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">How do I get a quotation?<span class="plus">+</span></button>
+          <div class="accordion-panel"><p>Submit a custom order or request quote on any quote-based product — we'll review and respond with pricing.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================== FINAL CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="final-cta" data-reveal>
+        <h2>HAVE SOMETHING IN MIND?</h2>
+        <p>Send us your idea. We'll help you turn it into something real.</p>
+        <div class="final-cta-actions">
+          <a href="customize.html" class="btn btn-primary btn-lg">START CUSTOM ORDER</a>
+          <button class="btn btn-outline btn-lg" id="final-cta-whatsapp">WHATSAPP US</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/translations.js"></script>
+<script src="js/products.js"></script>
+<script src="js/favorites.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/orders.js"></script>
+<script src="js/whatsapp.js"></script>
+<script src="js/app.js"></script>
+<script src="js/home.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    qs("#final-cta-whatsapp")?.addEventListener("click", () => openWhatsApp("Hello, I have an idea I'd like to discuss."));
+  });
+</script>
+</body>
+</html>

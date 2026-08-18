@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Product | 3 Studio Kuwait</title>
+<meta name="description" content="Custom 3D printed and neon products made to order in Kuwait." />
+<link rel="icon" href="assets/logo/logo.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="css/variables.css" />
+<link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/global.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/components.css" />
+<link rel="stylesheet" href="css/shop.css" />
+<link rel="stylesheet" href="css/responsive.css" />
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+</head>
+<body data-page="product">
+<div id="site-header"></div>
+
+<main>
+  <nav class="breadcrumbs container" id="breadcrumbs" aria-label="Breadcrumb"></nav>
+
+  <div class="container product-detail">
+    <div class="gallery-col">
+      <div class="gallery-main" id="gallery-main" role="button" tabindex="0" aria-label="Enlarge photo">
+        <img id="gallery-main-img" alt="" loading="eager" />
+        <button class="gallery-arrow gallery-prev" id="gallery-prev" aria-label="Previous photo">‹</button>
+        <button class="gallery-arrow gallery-next" id="gallery-next" aria-label="Next photo">›</button>
+      </div>
+      <div class="gallery-thumbs" id="gallery-thumbs"></div>
+    </div>
+    <div class="product-info" id="product-info"></div>
+  </div>
+
+  <div class="container">
+    <div class="tabs" id="product-tabs"></div>
+    <div id="product-tab-panels"></div>
+  </div>
+
+  <div class="container" style="padding-bottom:60px;">
+    <h2 class="section-title" style="margin:20px 0 22px;">YOU MAY ALSO LIKE</h2>
+    <div class="product-grid" id="related-grid"></div>
+  </div>
+</main>
+
+<div class="mobile-buy-bar" id="mobile-buy-bar">
+  <span class="price" id="mobile-buy-price"></span>
+  <button class="btn btn-primary" id="mobile-buy-btn">ADD TO CART</button>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous">‹</button>
+  <img id="lightbox-img" alt="" />
+  <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next">›</button>
+  <p class="lightbox-caption" id="lightbox-caption"></p>
+</div>
+
+<div id="site-footer"></div>
+
+<script src="js/translations.js"></script>
+<script src="js/products.js"></script>
+<script src="js/favorites.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/orders.js"></script>
+<script src="js/whatsapp.js"></script>
+<script src="js/app.js"></script>
+<script src="js/product-page.js"></script>
+</body>
+</html>
