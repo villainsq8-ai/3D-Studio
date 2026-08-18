@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Favorites | 3 Studio Kuwait</title>
+<meta name="description" content="Products you've saved for later." />
+<link rel="icon" href="assets/logo/logo.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="css/variables.css" />
+<link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/global.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/components.css" />
+<link rel="stylesheet" href="css/shop.css" />
+<link rel="stylesheet" href="css/responsive.css" />
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+</head>
+<body data-page="favorites">
+<div id="site-header"></div>
+
+<main>
+  <nav class="breadcrumbs container" id="breadcrumbs" aria-label="Breadcrumb"></nav>
+  <div class="container" style="padding-bottom:80px;">
+    <h1 class="section-title" style="margin-bottom:26px;">FAVORITES</h1>
+
+    <div id="favorites-empty" class="empty-state" style="display:none;">
+      <div class="empty-icon">♡</div>
+      <p class="empty-title">You haven't saved anything yet.</p>
+      <p class="empty-sub">Tap the heart icon on any product to save it here.</p>
+      <a href="3d-prints.html" class="btn btn-primary">Explore Products</a>
+    </div>
+    <div class="product-grid" id="favorites-grid"></div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/translations.js"></script>
+<script src="js/products.js"></script>
+<script src="js/favorites.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/orders.js"></script>
+<script src="js/whatsapp.js"></script>
+<script src="js/app.js"></script>
+<script src="js/favorites-page.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    initBreadcrumbs([{ label: "Home", href: "index.html" }, { label: "Favorites", href: "favorites.html" }]);
+  });
+</script>
+</body>
+</html>

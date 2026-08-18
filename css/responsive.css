@@ -1,0 +1,84 @@
+/* ==========================================================================
+   Mobile-first breakpoints. Base rules above already work down to 320px;
+   this file only overrides layout that needs to reflow at wider widths,
+   plus explicit mobile fixes for spacing / stacking below 1024/768px.
+   ========================================================================== */
+
+/* ---- Desktop nav hidden below 1024px, hamburger shown ---- */
+@media (max-width: 1023px) {
+  .main-nav { display: none; }
+  .hamburger { display: flex; }
+  .lang-switch { display: none; }
+  .header-actions { gap: 2px; }
+
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-visual { order: -1; }
+  .hero-pedestal { max-width: 420px; margin: 0 auto; }
+  .benefits { grid-template-columns: repeat(2, 1fr); }
+
+  .category-cards { grid-template-columns: 1fr; }
+  .product-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .how-steps { grid-template-columns: repeat(2, 1fr); row-gap: 30px; }
+  .how-arrow { display: none; }
+  .review-grid { grid-template-columns: repeat(2, 1fr); }
+  .featured-strip { grid-template-columns: repeat(2, 1fr); }
+  .business-grid, .car-feature { grid-template-columns: 1fr; }
+  .business-tag-grid { grid-template-columns: repeat(3, 1fr); }
+
+  .product-detail { grid-template-columns: 1fr; gap: 30px; }
+  .neon-configurator { grid-template-columns: 1fr; gap: 30px; }
+  .order-detail-grid { grid-template-columns: 1fr; }
+  .admin-stats { grid-template-columns: repeat(3, 1fr); }
+  .type-card-grid { grid-template-columns: repeat(2, 1fr); }
+  .masonry { columns: 3 200px; }
+}
+
+@media (max-width: 767px) {
+  :root { --header-h: 64px; }
+  .section { padding: 56px 0; }
+  .container { padding: 0 18px; }
+
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .product-body { padding: 12px 12px 14px; }
+  .product-card-actions { padding: 0 12px 12px; flex-direction: column; }
+
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+  .benefits { grid-template-columns: 1fr; }
+  .review-grid { grid-template-columns: 1fr; }
+  .featured-strip { grid-template-columns: 1fr 1fr; }
+  .how-steps { grid-template-columns: 1fr; }
+  .business-tag-grid { grid-template-columns: repeat(2, 1fr); }
+  .form-row, .form-row-3 { grid-template-columns: 1fr; }
+  .radio-card-row { grid-template-columns: 1fr; }
+  .type-card-grid { grid-template-columns: repeat(2, 1fr); }
+  .admin-stats { grid-template-columns: repeat(2, 1fr); }
+  .masonry { columns: 2 160px; }
+  .whatsapp-float { bottom: 20px; inset-inline-end: 18px; width: 50px; height: 50px; }
+  .scroll-top-btn { bottom: 84px; inset-inline-end: 18px; }
+  .wa-tooltip { display: none; }
+
+  .mobile-buy-bar { display: flex; }
+  body[data-page="product"] main { padding-bottom: 84px; }
+
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { width: 100%; }
+  .final-cta { padding: 40px 22px; }
+  .final-cta-actions { flex-direction: column; }
+  .final-cta-actions .btn { width: 100%; }
+
+  .gallery-thumbs { justify-content: flex-start; }
+  .lightbox-nav { width: 40px; height: 40px; }
+  .lightbox-prev { inset-inline-start: 8px; }
+  .lightbox-next { inset-inline-end: 8px; }
+
+  .admin-toolbar { flex-direction: column; align-items: stretch; }
+  .admin-search { max-width: none; }
+}
+
+@media (max-width: 480px) {
+  .product-grid { grid-template-columns: 1fr 1fr; }
+  .masonry { columns: 2 140px; }
+  .type-card-grid { grid-template-columns: 1fr 1fr; }
+}

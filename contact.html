@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact Us | 3 Studio Kuwait</title>
+<meta name="description" content="Get in touch with 3 Studio — WhatsApp, Instagram, email, or send us a message." />
+<link rel="icon" href="assets/logo/logo.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="css/variables.css" />
+<link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/global.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/components.css" />
+<link rel="stylesheet" href="css/responsive.css" />
+<style>
+  .contact-layout { display: grid; grid-template-columns: 1fr 1.3fr; gap: 44px; padding: 20px 0 80px; align-items: start; }
+  .contact-channel { display: flex; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+  .contact-channel .ic { width: 44px; height: 44px; border-radius: 50%; background: var(--bg-elevated); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .contact-channel a, .contact-channel span { color: var(--text-secondary); font-size: 14.5px; }
+  .contact-channel h4 { font-size: 14.5px; margin-bottom: 2px; }
+  @media (max-width: 1023px) { .contact-layout { grid-template-columns: 1fr; } }
+</style>
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+</head>
+<body data-page="contact">
+<div id="site-header"></div>
+
+<main>
+  <nav class="breadcrumbs container" id="breadcrumbs" aria-label="Breadcrumb"></nav>
+  <div class="container">
+    <h1 class="section-title">CONTACT US</h1>
+    <p class="section-sub">Questions, custom ideas or order updates — reach out any way that suits you.</p>
+  </div>
+
+  <div class="container contact-layout">
+    <div>
+      <div class="contact-channel">
+        <div class="ic">💬</div>
+        <div><h4>WhatsApp</h4><a href="#" id="contact-whatsapp-link">Chat with us</a></div>
+      </div>
+      <div class="contact-channel">
+        <div class="ic">📷</div>
+        <div><h4>Instagram</h4><a href="#" id="contact-instagram-link" target="_blank" rel="noopener">Follow us</a></div>
+      </div>
+      <div class="contact-channel">
+        <div class="ic">✉</div>
+        <div><h4>Email</h4><a href="#" id="contact-email-link"></a></div>
+      </div>
+      <div class="contact-channel">
+        <div class="ic">📍</div>
+        <div><h4>Location</h4><span>Kuwait</span></div>
+      </div>
+      <a href="#" id="contact-whatsapp-cta" class="btn btn-primary btn-lg btn-block" style="margin-top:26px;">CHAT ON WHATSAPP</a>
+    </div>
+
+    <form id="contact-form" class="card" style="padding:30px;" novalidate>
+      <div class="form-row">
+        <div class="field"><label>Name <span class="req">*</span></label><input type="text" name="name" required /></div>
+        <div class="field"><label>Phone</label><input type="tel" name="phone" value="+965 " /></div>
+      </div>
+      <div class="field"><label>Email</label><input type="email" name="email" /></div>
+      <div class="field"><label>Subject</label><input type="text" name="subject" placeholder="What's this about?" /></div>
+      <div class="field" style="margin-bottom:0;"><label>Message <span class="req">*</span></label><textarea name="message" placeholder="Write your message..." required></textarea></div>
+      <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top:18px;">SEND MESSAGE</button>
+    </form>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/translations.js"></script>
+<script src="js/products.js"></script>
+<script src="js/favorites.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/orders.js"></script>
+<script src="js/whatsapp.js"></script>
+<script src="js/app.js"></script>
+<script src="js/contact.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    initBreadcrumbs([{ label: "Home", href: "index.html" }, { label: "Contact", href: "contact.html" }]);
+    const waHref = buildWhatsAppLink("Hello, I'd like to get in touch.");
+    qs("#contact-whatsapp-link").href = waHref;
+    qs("#contact-whatsapp-cta").href = waHref;
+    qs("#contact-instagram-link").href = `https://instagram.com/${CONFIG.instagram.replace('@','')}`;
+    qs("#contact-instagram-link").textContent = CONFIG.instagram;
+    qs("#contact-email-link").href = `mailto:${CONFIG.email}`;
+    qs("#contact-email-link").textContent = CONFIG.email;
+  });
+</script>
+</body>
+</html>

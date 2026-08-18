@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About Us | 3 Studio Kuwait</title>
+<meta name="description" content="3 Studio designs and manufactures custom 3D printed products and neon lighting in Kuwait." />
+<link rel="icon" href="assets/logo/logo.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="css/variables.css" />
+<link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/global.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/components.css" />
+<link rel="stylesheet" href="css/shop.css" />
+<link rel="stylesheet" href="css/responsive.css" />
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+</head>
+<body data-page="about">
+<div id="site-header"></div>
+
+<main>
+  <nav class="breadcrumbs container" id="breadcrumbs" aria-label="Breadcrumb"></nav>
+
+  <section class="hero" style="padding-top:20px;">
+    <div class="container" style="max-width:900px;text-align:center;margin:0 auto;">
+      <span class="kicker">ABOUT US</span>
+      <h1 class="hero-title" style="font-size:clamp(32px,5vw,52px);">WE TURN IDEAS INTO<br/><span class="accent">REAL PRODUCTS.</span></h1>
+      <p class="hero-sub" style="margin:0 auto 10px;">
+        3 Studio is a Kuwait-based 3D printing and custom neon studio. We help people and businesses turn an idea,
+        a photo, a logo or a rough sketch into a physical product — made to order and built around what you actually need.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="business-grid">
+        <div data-reveal>
+          <span class="kicker">What We Do</span>
+          <h2 class="section-title">SPECIALIZED IN</h2>
+          <p class="section-sub">We specialize in a focused set of capabilities, so every product gets real attention:</p>
+          <div class="business-tag-grid" style="grid-template-columns:repeat(2,1fr);">
+            <div class="business-tag">3D Printing</div>
+            <div class="business-tag">Custom Fabrication</div>
+            <div class="business-tag">Personalized Products</div>
+            <div class="business-tag">Car Accessories</div>
+            <div class="business-tag">Gaming Accessories</div>
+            <div class="business-tag">Custom Neon</div>
+            <div class="business-tag">Business Signage</div>
+          </div>
+        </div>
+        <div class="masonry" style="columns:2 160px;" data-reveal>
+          <div class="masonry-item"><img src="assets/3d/deck-boxes/deck-box-01.jpg" alt="3D printed deck box" data-fallback-label="3D Printing" data-fallback-theme="orange"/></div>
+          <div class="masonry-item"><img src="assets/neon/gaming/neon-controller-01.jpg" alt="Neon sign" data-fallback-label="Custom Neon" data-fallback-theme="neon"/></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:820px;">
+      <div class="section-head text-center" data-reveal>
+        <span class="kicker">Our Approach</span>
+        <h2 class="section-title">TWO WAYS TO WORK WITH US</h2>
+      </div>
+      <div class="category-cards" style="grid-template-columns:repeat(2,1fr);" data-reveal>
+        <div class="category-card orange">
+          <div class="category-card-icon">◈</div>
+          <h3>Ready-Made Products</h3>
+          <p>Browse our 3D print and neon catalog and order something already designed and ready to customize.</p>
+        </div>
+        <div class="category-card cyan">
+          <div class="category-card-icon">✎</div>
+          <h3>Fully Custom Orders</h3>
+          <p>Send us your own idea, photo, logo or file and we'll quote it, design it and produce it for you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="final-cta" data-reveal>
+        <h2>LET'S BUILD SOMETHING TOGETHER</h2>
+        <p>Whether it's a ready-made product or a completely custom idea, we're here to help.</p>
+        <div class="final-cta-actions">
+          <a href="customize.html" class="btn btn-primary btn-lg">START CUSTOM ORDER</a>
+          <a href="contact.html" class="btn btn-outline btn-lg">CONTACT US</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/translations.js"></script>
+<script src="js/products.js"></script>
+<script src="js/favorites.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/orders.js"></script>
+<script src="js/whatsapp.js"></script>
+<script src="js/app.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    initBreadcrumbs([{ label: "Home", href: "index.html" }, { label: "About", href: "about.html" }]);
+  });
+</script>
+</body>
+</html>

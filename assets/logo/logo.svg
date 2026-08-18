@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="3 Studio logo">
+  <circle cx="60" cy="60" r="58" fill="#F7F8FA"/>
+  <path d="M60 2 A58 58 0 0 1 60 118 Z" fill="#161D24"/>
+  <circle cx="60" cy="60" r="58" fill="none" stroke="#242C35" stroke-width="1"/>
+  <text x="61" y="83" text-anchor="middle" font-family="'Space Grotesk', Arial, sans-serif" font-weight="700" font-size="64" fill="#FF9800">3</text>
+</svg>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Order Detail | 3 Studio Kuwait</title>
+<meta name="description" content="Order status and details." />
+<link rel="icon" href="assets/logo/logo.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="css/variables.css" />
+<link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/global.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/components.css" />
+<link rel="stylesheet" href="css/admin.css" />
+<link rel="stylesheet" href="css/responsive.css" />
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+</head>
+<body data-page="order-detail">
+<div id="site-header"></div>
+
+<main>
+  <nav class="breadcrumbs container" id="breadcrumbs" aria-label="Breadcrumb"></nav>
+
+  <div class="container" id="order-detail-wrap" style="padding-bottom:80px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:24px;">
+      <div>
+        <h1 class="section-title" id="order-detail-id" style="font-size:26px;">ORD-0000</h1>
+        <p class="section-sub" id="order-detail-date" style="margin-top:4px;"></p>
+      </div>
+      <span class="status-chip" id="order-detail-status">—</span>
+    </div>
+
+    <div class="order-detail-grid">
+      <div>
+        <div class="detail-card">
+          <h3>Order Status</h3>
+          <div id="cancelled-banner" class="admin-notice" style="display:none;">This order has been cancelled.</div>
+          <div class="order-timeline" id="order-timeline"></div>
+        </div>
+
+        <div class="detail-card" id="items-card" style="display:none;">
+          <h3>Items</h3>
+          <div id="order-items-list"></div>
+          <div class="cart-summary-row" style="margin-top:10px;"><span>Subtotal</span><span id="order-subtotal">KD 0.000</span></div>
+          <div class="cart-summary-row"><span>Delivery</span><span id="order-delivery">KD 0.000</span></div>
+          <div class="cart-summary-row cart-summary-total"><span>Total</span><span id="order-total">KD 0.000</span></div>
+        </div>
+
+        <div class="detail-card" id="custom-info-card" style="display:none;">
+          <h3>Custom Request Details</h3>
+          <div id="custom-info-rows"></div>
+          <div id="custom-files" class="upload-list" style="display:none;flex-direction:row;flex-wrap:wrap;gap:10px;"></div>
+        </div>
+
+        <div class="detail-card quotation-box" id="quotation-box" style="display:none;">
+          <h3>Quotation</h3>
+          <div class="detail-row"><span class="k">Quoted Price</span><span class="amount" id="quotation-price">—</span></div>
+          <div class="detail-row"><span class="k">Production Time</span><span id="quotation-time">—</span></div>
+          <div class="detail-row"><span class="k">Notes</span><span id="quotation-notes">—</span></div>
+          <div class="modal-actions" id="quotation-actions" style="justify-content:flex-start;margin-top:16px;"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="detail-card">
+          <h3>Customer</h3>
+          <div id="customer-info"></div>
+        </div>
+        <div class="detail-card" id="delivery-info" style="display:none;">
+          <h3>Delivery & Payment</h3>
+          <div id="delivery-info-rows"></div>
+        </div>
+        <button class="btn btn-outline btn-block" id="contact-order-btn">CONTACT US ABOUT THIS ORDER</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/translations.js"></script>
+<script src="js/products.js"></script>
+<script src="js/favorites.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/orders.js"></script>
+<script src="js/whatsapp.js"></script>
+<script src="js/app.js"></script>
+<script src="js/order-detail.js"></script>
+</body>
+</html>

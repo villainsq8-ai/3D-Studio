@@ -1,0 +1,176 @@
+/* ==========================================================================
+   Shop listing pages, product detail page, neon configurator, gallery.
+   ========================================================================== */
+
+/* ------------------------------------------------------------- Category hero */
+.shop-hero { padding: 40px 0 36px; border-bottom: 1px solid var(--border); }
+.shop-hero.neon-theme { background: radial-gradient(ellipse at 20% 0%, rgba(168,85,247,0.14), transparent 60%), radial-gradient(ellipse at 80% 100%, rgba(0,229,255,0.1), transparent 55%); }
+.shop-hero h1 { font-size: clamp(30px, 4.5vw, 46px); }
+.shop-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 0; flex-wrap: wrap; }
+
+/* --------------------------------------------------------------- Listing grid */
+.listing-layout { display: block; padding: 32px 0 80px; }
+.result-count { color: var(--text-secondary); font-size: 13.5px; }
+
+/* --------------------------------------------------------------- Bulk banner */
+.bulk-banner { display: flex; align-items: center; justify-content: space-between; gap: 20px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 22px 28px; margin: 40px 0; flex-wrap: wrap; }
+.bulk-banner h4 { font-size: 17px; margin-bottom: 4px; }
+.bulk-banner p { color: var(--text-secondary); font-size: 13.5px; }
+
+/* ==========================================================================
+   Product detail page
+   ========================================================================== */
+.product-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; padding: 24px 0 60px; align-items: start; }
+
+/* Gallery */
+.gallery-main { position: relative; border-radius: var(--r-xl); overflow: hidden; background: var(--bg-card); border: 1px solid var(--border); aspect-ratio: 1/1; cursor: zoom-in; }
+.gallery-main img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(7,9,12,0.6); color: #fff; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+.gallery-arrow:hover { background: rgba(7,9,12,0.85); }
+.gallery-prev { inset-inline-start: 14px; }
+.gallery-next { inset-inline-end: 14px; }
+.gallery-thumbs { display: flex; gap: 10px; margin-top: 14px; overflow-x: auto; }
+.gallery-thumb { width: 76px; height: 76px; border-radius: var(--r-sm); overflow: hidden; border: 2px solid var(--border); flex-shrink: 0; opacity: 0.7; }
+.gallery-thumb.active { border-color: var(--orange); opacity: 1; }
+.gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Info column */
+.product-info h1 { font-size: clamp(24px, 3vw, 32px); margin-bottom: 10px; }
+.product-info-price { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--orange); margin: 10px 0 4px; }
+.product-info-rating { display: flex; align-items: center; gap: 8px; color: var(--amber); font-size: 14px; margin-bottom: 18px; }
+.product-info-desc { color: var(--text-secondary); line-height: 1.7; margin-bottom: 26px; }
+.option-group { margin-bottom: 22px; }
+.option-group > label { display: block; font-size: 13.5px; font-weight: 700; margin-bottom: 10px; }
+.swatch-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.swatch { min-width: 44px; height: 44px; padding: 0 14px; border-radius: var(--r-sm); border: 1px solid var(--border); background: var(--bg-card); font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.swatch.selected { border-color: var(--orange); background: rgba(255,152,0,0.08); color: var(--orange); }
+.swatch-dot { width: 16px; height: 16px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.25); }
+.product-actions-row { display: flex; gap: 12px; margin: 26px 0 18px; flex-wrap: wrap; }
+.product-actions-row .btn { flex: 1; min-width: 160px; }
+.product-meta-row { display: flex; gap: 22px; color: var(--text-secondary); font-size: 13px; padding-top: 18px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+
+/* Personalization inputs on product page */
+.personalize-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-md); padding: 18px; margin-bottom: 22px; }
+
+/* Specs table */
+.spec-table { width: 100%; border-collapse: collapse; }
+.spec-table tr { border-bottom: 1px solid var(--border); }
+.spec-table td { padding: 12px 6px; font-size: 14.5px; }
+.spec-table td:first-child { color: var(--text-secondary); width: 200px; }
+
+/* Sticky mobile buy bar */
+.mobile-buy-bar {
+  display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 180; background: var(--bg-secondary);
+  border-top: 1px solid var(--border); padding: 12px 16px; align-items: center; justify-content: space-between; gap: 14px;
+}
+.mobile-buy-bar .price { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--orange); }
+.mobile-buy-bar .btn { flex: 1; max-width: 220px; }
+
+/* ==========================================================================
+   Neon configurator
+   ========================================================================== */
+.neon-configurator { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding: 20px 0 60px; align-items: start; }
+.neon-preview-stage {
+  border-radius: var(--r-xl); border: 1px solid var(--border); background:
+    radial-gradient(ellipse at 50% 40%, rgba(168,85,247,0.08), transparent 60%), #050608;
+  min-height: 340px; display: flex; align-items: center; justify-content: center; padding: 50px 24px; position: relative; overflow: hidden;
+}
+.neon-preview-stage::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size: 26px 26px; }
+.neon-preview-text {
+  position: relative; font-family: var(--font-display); font-weight: 700; font-size: clamp(28px, 5vw, 52px);
+  text-align: center; letter-spacing: 0.02em; transition: color var(--t-fast) var(--ease), text-shadow var(--t-fast) var(--ease);
+}
+.neon-preview-text.font-script { font-style: italic; font-family: 'Space Grotesk', cursive; }
+.neon-preview-text.font-bold { font-weight: 800; }
+.neon-preview-text.font-minimal { font-weight: 400; letter-spacing: 0.06em; }
+.neon-preview-note { text-align: center; color: var(--text-secondary); font-size: 12.5px; margin-top: 18px; position: relative; }
+.neon-price-estimate { margin-top: 18px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-md); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; }
+.neon-price-estimate .amount { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--cyan); }
+.neon-color-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.neon-color-dot { width: 38px; height: 38px; border-radius: 50%; border: 2px solid transparent; position: relative; }
+.neon-color-dot.selected { border-color: var(--text-main); }
+.neon-color-dot.selected::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; border: 1px solid var(--border); }
+
+/* ==========================================================================
+   Before / after
+   ========================================================================== */
+.before-after { position: relative; border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 16/10; border: 1px solid var(--border); cursor: ew-resize; user-select: none; }
+.before-after img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.before-after .after-layer { clip-path: inset(0 0 0 50%); }
+[dir="rtl"] .before-after .after-layer { clip-path: inset(0 50% 0 0); }
+.before-after-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; background: var(--orange); transform: translateX(-50%); }
+.before-after-handle::after { content: "⇔"; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 40px; height: 40px; border-radius: 50%; background: var(--orange); color: #06060a; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.ba-tag { position: absolute; top: 14px; background: rgba(7,9,12,0.75); padding: 5px 12px; border-radius: 999px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; }
+.ba-tag.before { left: 14px; }
+.ba-tag.after { right: 14px; }
+
+/* ==========================================================================
+   Gallery masonry
+   ========================================================================== */
+.masonry { columns: 4 220px; column-gap: 18px; }
+.masonry-item { break-inside: avoid; margin-bottom: 18px; border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--border); position: relative; cursor: zoom-in; }
+.masonry-item img { width: 100%; display: block; transition: transform var(--t-slow) var(--ease); }
+.masonry-item:hover img { transform: scale(1.05); }
+.masonry-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 12px 10px; background: linear-gradient(0deg, rgba(0,0,0,0.75), transparent); font-size: 12.5px; font-weight: 600; }
+
+/* ==========================================================================
+   Customize page (studio theme)
+   ========================================================================== */
+.type-card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.type-card { border: 1px solid var(--border); border-radius: var(--r-lg); padding: 24px 16px; text-align: center; background: var(--bg-card); }
+.type-card:hover { border-color: var(--cyan); }
+.type-card.selected { border-color: var(--cyan); box-shadow: var(--glow-cyan); background: rgba(0,229,255,0.05); }
+.type-card .type-icon { font-size: 26px; margin-bottom: 10px; }
+.type-card h4 { font-size: 14px; }
+.studio-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 32px; margin-top: 32px; }
+.studio-card h3 { font-size: 19px; margin-bottom: 22px; display: flex; align-items: center; gap: 10px; }
+.studio-card h3 .num { width: 28px; height: 28px; border-radius: 50%; background: var(--grad-neon); color: #06060a; font-size: 13px; display: flex; align-items: center; justify-content: center; }
+.qty-stepper { display: inline-flex; align-items: center; gap: 16px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 999px; padding: 6px 8px; }
+.qty-stepper button { width: 34px; height: 34px; border-radius: 50%; font-size: 18px; }
+.qty-stepper button:hover { background: var(--border); }
+.qty-stepper span { min-width: 20px; text-align: center; font-weight: 700; }
+
+/* ==========================================================================
+   Reviews / testimonials
+   ========================================================================== */
+.review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.review-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 26px; }
+.review-stars { color: var(--amber); margin-bottom: 12px; font-size: 14px; }
+.review-card p.review-text { color: var(--text-secondary); font-size: 14.5px; line-height: 1.6; margin-bottom: 18px; }
+.review-author { display: flex; align-items: center; gap: 10px; }
+.review-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--grad-orange); display: flex; align-items: center; justify-content: center; font-weight: 700; color: #0a0603; font-size: 14px; }
+.review-name { font-size: 13.5px; font-weight: 700; }
+.review-demo-tag { font-size: 11px; color: var(--text-secondary); }
+.demo-content-note { text-align: center; color: var(--text-secondary); font-size: 12.5px; margin-top: 24px; }
+
+/* ==========================================================================
+   How it works
+   ========================================================================== */
+.how-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; position: relative; }
+.how-step { text-align: center; position: relative; }
+.how-step-num { font-size: 12px; color: var(--text-secondary); font-weight: 700; margin-bottom: 12px; }
+.how-step-icon { width: 66px; height: 66px; border-radius: var(--r-md); border: 1px solid var(--border); background: var(--bg-card); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--orange); }
+.how-step h4 { font-size: 15px; margin-bottom: 6px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--orange); }
+.how-step p { color: var(--text-secondary); font-size: 13.5px; }
+.how-arrow { position: absolute; top: 33px; inset-inline-end: -26px; color: var(--orange); font-size: 20px; display: none; }
+
+/* ==========================================================================
+   Business section
+   ========================================================================== */
+.business-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+.business-tag-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 26px 0; }
+.business-tag { border: 1px solid var(--border); border-radius: var(--r-sm); padding: 12px; text-align: center; font-size: 13px; font-weight: 600; color: var(--text-secondary); }
+
+/* ==========================================================================
+   Car accessories feature
+   ========================================================================== */
+.car-feature { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+
+/* ==========================================================================
+   Featured strip (recent creations)
+   ========================================================================== */
+.featured-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.featured-card { position: relative; border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 4/5; border: 1px solid var(--border); }
+.featured-card img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--t-slow) var(--ease); }
+.featured-card:hover img { transform: scale(1.06); }
+.featured-card .cap { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px; background: linear-gradient(0deg, rgba(0,0,0,0.8), transparent); font-weight: 700; font-size: 14px; }
