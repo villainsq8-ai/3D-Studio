@@ -9,6 +9,11 @@ It covers browsing and buying ready-made 3D print / neon products, a fully custo
 WhatsApp integration, and a prototype admin dashboard — in English and Arabic (RTL),
 with KWD pricing throughout.
 
+It's also an installable **PWA (Progressive Web App)** — customers can add it to
+their home screen on iOS or Android and it opens full-screen like a native app,
+works offline after the first visit, and needs nothing from the App Store or
+Play Store. See §1a.
+
 ---
 
 ## 1. How to run it
@@ -31,6 +36,33 @@ There is nothing to install and nothing to configure to see the whole site worki
 
 ---
 
+## 1a. Install it as an app (iOS / Android)
+
+The site is a PWA — a real browser-installable app, no App Store/Play Store needed.
+It must be served over **HTTPS** (or `localhost`) for this to work — `file://` and
+plain `http://` won't register the service worker, so use the live GitHub Pages URL
+or a local server, not double-clicking the HTML file, for this part.
+
+- **Android (Chrome)**: open the site → tap the **⋮** menu → **"Install app"** (or
+  **"Add to Home screen"**). Chrome may also show an automatic install banner.
+- **iOS (Safari)**: open the site → tap the **Share** icon → **"Add to Home Screen"**.
+  iOS has no automatic install prompt; this manual step is the only way to install
+  any web app on iOS, by design.
+- **Desktop (Chrome/Edge)**: an install icon appears in the address bar.
+
+Once installed it opens full-screen (no browser chrome/URL bar), uses the app icon
+and name defined in `manifest.webmanifest`, and — thanks to `sw.js` — keeps working
+if the connection drops after the first visit (product pages, cart, and previously
+viewed pages are all available offline; placing a new order still needs a network
+connection to reach WhatsApp/the eventual backend).
+
+**Regenerating icons**: `assets/icons/*.png` are rasterized from `assets/logo/logo.svg`.
+If you replace the logo, regenerate the PNGs at the same sizes/names (192, 512,
+a padded 512 maskable version, and a 180px Apple touch icon) with any SVG-to-PNG
+tool, then bump `CACHE_VERSION` in `sw.js` so installed apps pick up the change.
+
+---
+
 ## 2. Project structure
 
 ```
@@ -50,6 +82,9 @@ There is nothing to install and nothing to configure to see the whole site worki
 ├── favorites.html                Saved products
 ├── about.html                     About page
 ├── contact.html                    Contact page + form
+│
+├── manifest.webmanifest    PWA manifest (name, icons, standalone display)
+├── sw.js                    Service worker (offline caching, installability)
 │
 ├── css/
 │   ├── variables.css      Design tokens (colors, spacing, radius, motion)
