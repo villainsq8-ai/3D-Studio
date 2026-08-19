@@ -1,0 +1,27 @@
+{
+  "name": "3 Studio — 3D Printing & Neon",
+  "short_name": "3 Studio",
+  "description": "Custom 3D printing and neon light studio in Kuwait. Shop ready-made products or send your own idea for a quotation.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "id": "./index.html",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#07090C",
+  "theme_color": "#07090C",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["shopping", "business"],
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "3D Prints", "url": "./3d-prints.html", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Neon Lights", "url": "./neon.html", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Customize Your Own", "url": "./customize.html", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "My Orders", "url": "./orders.html", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
