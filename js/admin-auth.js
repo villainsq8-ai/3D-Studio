@@ -11,6 +11,17 @@
  * Users) can sign in. There is no public sign-up form anywhere on the site.
  */
 (function () {
+  // Supabase Auth's email/password sign-in needs an email address under the
+  // hood, but the owners just want a plain username. We map "username" to
+  // "username@ADMIN_USERNAME_DOMAIN" transparently — the login screen only
+  // ever shows "Username", never this fake address. When creating an
+  // account in the Supabase dashboard, use this same pattern as the email
+  // (see README "Set up the admin panel (Supabase)").
+  const ADMIN_USERNAME_DOMAIN = "3studio.local";
+  function usernameToEmail(username) {
+    return `${username.trim().toLowerCase()}@${ADMIN_USERNAME_DOMAIN}`;
+  }
+
   function showOnly(viewId) {
     ["admin-login-view", "admin-dashboard"].forEach((id) => {
       qs(`#${id}`).style.display = id === viewId ? "" : "none";
@@ -55,13 +66,13 @@
     initTabs();
     qs("#admin-login-form").addEventListener("submit", async (e) => {
       e.preventDefault();
-      const email = qs("#admin-login-email").value.trim();
+      const username = qs("#admin-login-username").value.trim();
       const password = qs("#admin-login-password").value;
       const btn = qs("#admin-login-btn");
       btn.disabled = true; btn.textContent = "LOGGING IN...";
-      const { error } = await window.supabaseClient.auth.signInWithPassword({ email, password });
+      const { error } = await window.supabaseClient.auth.signInWithPassword({ email: usernameToEmail(username), password });
       btn.disabled = false; btn.textContent = "LOG IN";
-      if (error) { showLogin(error.message || "Login failed. Check your email and password."); return; }
+      if (error) { showLogin(error.message || "Login failed. Check your username and password."); return; }
       showDashboard();
     });
 
