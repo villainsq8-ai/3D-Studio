@@ -25,6 +25,8 @@
 <link rel="stylesheet" href="css/responsive.css" />
 <script src="js/config.js"></script>
 <script src="js/utils.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-client.js"></script>
 </head>
 <body data-page="admin">
 <div id="site-header"></div>
@@ -32,75 +34,176 @@
 <main>
   <div class="container" style="padding:20px 24px 80px;">
     <h1 class="section-title" style="margin-bottom:10px;">ADMIN DASHBOARD</h1>
-    <p class="admin-notice">
-      <strong>Prototype only:</strong> this dashboard has no real authentication, authorization or server-side
-      protection — anyone with the URL can open it. Before deploying to production, put this page behind real
-      authentication (e.g. Supabase/Firebase Auth) and move order data to a protected backend. See README.md
-      for the recommended production architecture.
-    </p>
 
-    <div id="admin-list-view">
-      <div class="admin-stats" id="admin-stats"></div>
-      <div class="admin-toolbar">
-        <div class="chip-row" id="admin-filter-tabs"></div>
-        <input type="search" id="admin-search" class="admin-search" placeholder="Search order ID or customer" aria-label="Search orders" />
-      </div>
-      <div class="admin-table-wrap">
-        <table class="admin-table">
-          <thead>
-            <tr><th>Order ID</th><th>Customer</th><th>Type</th><th>Date</th><th>Amount</th><th>Status</th><th>Action</th></tr>
-          </thead>
-          <tbody id="admin-table-body"></tbody>
-        </table>
+    <div id="admin-unconfigured" style="display:none;">
+      <p class="admin-notice">
+        <strong>Not set up yet.</strong> The admin login and product manager need a one-time Supabase setup
+        before they'll work. See README.md → "Set up the admin panel (Supabase)" for the step-by-step guide.
+        Until then, orders below are read from this browser's local storage only, with no login required.
+      </p>
+    </div>
+
+    <div id="admin-login-view" style="display:none;">
+      <div class="studio-card" style="max-width:420px;margin:40px auto;">
+        <h3 style="margin-bottom:18px;">OWNER LOGIN</h3>
+        <form id="admin-login-form">
+          <div class="field"><label>Email</label><input type="email" id="admin-login-email" autocomplete="username" required /></div>
+          <div class="field" style="margin-bottom:14px;"><label>Password</label><input type="password" id="admin-login-password" autocomplete="current-password" required /></div>
+          <p class="field-error" id="admin-login-error" style="display:none;margin-bottom:14px;"></p>
+          <button type="submit" class="btn btn-neon btn-block" id="admin-login-btn">LOG IN</button>
+        </form>
       </div>
     </div>
 
-    <div id="admin-detail-view" style="display:none;">
-      <a href="admin.html" class="link-arrow" style="margin-bottom:18px;display:inline-block;">← BACK TO DASHBOARD</a>
-      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:20px;">
-        <h2 id="admin-detail-id" style="font-family:var(--font-display);font-size:24px;">ORD-0000</h2>
-        <span class="status-chip" id="admin-detail-status-chip">—</span>
+    <div id="admin-dashboard" style="display:none;">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:26px;">
+        <div class="chip-row" id="admin-main-tabs">
+          <button type="button" class="chip active" data-main-tab="orders">ORDERS</button>
+          <button type="button" class="chip" data-main-tab="products">PRODUCTS</button>
+        </div>
+        <button type="button" class="btn btn-ghost btn-sm" id="admin-logout-btn">LOG OUT</button>
       </div>
 
-      <div class="order-detail-grid">
-        <div>
-          <div class="detail-card" id="admin-product-info" style="display:none;">
-            <h3>Order Items</h3>
-            <div class="rows"></div>
+      <div id="admin-orders-panel">
+        <div id="admin-list-view">
+          <div class="admin-stats" id="admin-stats"></div>
+          <div class="admin-toolbar">
+            <div class="chip-row" id="admin-filter-tabs"></div>
+            <input type="search" id="admin-search" class="admin-search" placeholder="Search order ID or customer" aria-label="Search orders" />
           </div>
-          <div class="detail-card" id="admin-custom-info" style="display:none;">
-            <h3>Custom Request</h3>
-            <div class="rows"></div>
-            <div class="files" style="display:none;gap:10px;margin-top:14px;"></div>
-          </div>
-
-          <div class="detail-card" id="admin-quotation-card" style="display:none;">
-            <h3>Send Quotation</h3>
-            <div class="form-row">
-              <div class="field"><label>Quoted Price (KD)</label><input type="number" step="0.001" min="0" id="quote-price-input" placeholder="28.000" /></div>
-              <div class="field"><label>Production Time</label><input type="text" id="quote-time-input" placeholder="3–5 working days" /></div>
-            </div>
-            <div class="field"><label>Notes</label><textarea id="quote-notes-input" placeholder="Any notes for the customer..."></textarea></div>
-            <button class="btn btn-neon" id="admin-send-quote-btn">SEND QUOTATION</button>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr><th>Order ID</th><th>Customer</th><th>Type</th><th>Date</th><th>Amount</th><th>Status</th><th>Action</th></tr>
+              </thead>
+              <tbody id="admin-table-body"></tbody>
+            </table>
           </div>
         </div>
 
-        <div>
-          <div class="detail-card">
-            <h3>Customer</h3>
-            <div id="admin-customer-info"></div>
+        <div id="admin-detail-view" style="display:none;">
+          <a href="admin.html" class="link-arrow" style="margin-bottom:18px;display:inline-block;">← BACK TO DASHBOARD</a>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:20px;">
+            <h2 id="admin-detail-id" style="font-family:var(--font-display);font-size:24px;">ORD-0000</h2>
+            <span class="status-chip" id="admin-detail-status-chip">—</span>
           </div>
-          <div class="detail-card">
-            <h3>Change Status</h3>
-            <div class="field"><select id="admin-status-select"></select></div>
-            <button class="btn btn-primary btn-block" id="admin-save-status-btn">SAVE STATUS</button>
+
+          <div class="order-detail-grid">
+            <div>
+              <div class="detail-card" id="admin-product-info" style="display:none;">
+                <h3>Order Items</h3>
+                <div class="rows"></div>
+              </div>
+              <div class="detail-card" id="admin-custom-info" style="display:none;">
+                <h3>Custom Request</h3>
+                <div class="rows"></div>
+                <div class="files" style="display:none;gap:10px;margin-top:14px;"></div>
+              </div>
+
+              <div class="detail-card" id="admin-quotation-card" style="display:none;">
+                <h3>Send Quotation</h3>
+                <div class="form-row">
+                  <div class="field"><label>Quoted Price (KD)</label><input type="number" step="0.001" min="0" id="quote-price-input" placeholder="28.000" /></div>
+                  <div class="field"><label>Production Time</label><input type="text" id="quote-time-input" placeholder="3–5 working days" /></div>
+                </div>
+                <div class="field"><label>Notes</label><textarea id="quote-notes-input" placeholder="Any notes for the customer..."></textarea></div>
+                <button class="btn btn-neon" id="admin-send-quote-btn">SEND QUOTATION</button>
+              </div>
+            </div>
+
+            <div>
+              <div class="detail-card">
+                <h3>Customer</h3>
+                <div id="admin-customer-info"></div>
+              </div>
+              <div class="detail-card">
+                <h3>Change Status</h3>
+                <div class="field"><select id="admin-status-select"></select></div>
+                <button class="btn btn-primary btn-block" id="admin-save-status-btn">SAVE STATUS</button>
+              </div>
+              <button class="btn btn-outline btn-block" id="admin-whatsapp-btn">CONTACT ON WHATSAPP</button>
+            </div>
           </div>
-          <button class="btn btn-outline btn-block" id="admin-whatsapp-btn">CONTACT ON WHATSAPP</button>
+        </div>
+      </div>
+
+      <div id="admin-products-panel" style="display:none;">
+        <div class="admin-toolbar">
+          <p style="color:var(--text-secondary);font-size:14px;margin:0;">Add, edit or remove items shown in the 3D Prints and Neon catalogs.</p>
+          <button type="button" class="btn btn-primary btn-sm" id="admin-add-product-btn">+ ADD PRODUCT</button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr><th>Photo</th><th>Name</th><th>Type</th><th>Category</th><th>Price</th><th>Featured</th><th>Action</th></tr>
+            </thead>
+            <tbody id="admin-products-table-body"></tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
 </main>
+
+<div class="modal-overlay" id="admin-product-modal">
+  <div class="modal" style="max-width:640px;max-height:88vh;overflow-y:auto;">
+    <h3 id="admin-product-modal-title">ADD PRODUCT</h3>
+    <form id="admin-product-form">
+      <input type="hidden" id="pf-original-id" />
+      <div class="form-row">
+        <div class="field"><label>Product ID (unique, no spaces) <span class="req">*</span></label><input type="text" id="pf-id" placeholder="e.g. desk-lamp-01" required /></div>
+        <div class="field"><label>Type <span class="req">*</span></label>
+          <select id="pf-type"><option value="3d">3D Print</option><option value="neon">Neon Sign</option></select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Name <span class="req">*</span></label><input type="text" id="pf-name" required /></div>
+        <div class="field"><label>Category</label><input type="text" id="pf-category" placeholder="e.g. gaming" /></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Price (KD) — leave blank for "Request Quote"</label><input type="number" step="0.001" min="0" id="pf-price" /></div>
+        <div class="field"><label>Sale Type</label>
+          <select id="pf-purchase-type"><option value="direct">Direct — Add to Cart</option><option value="quote">Quote Only</option></select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Rating (1–5)</label><input type="number" step="0.1" min="1" max="5" id="pf-rating" value="5" /></div>
+        <div class="field"><label>Review Count</label><input type="number" min="0" id="pf-reviews" value="0" /></div>
+      </div>
+      <label class="checkbox-row"><input type="checkbox" id="pf-customizable" /> Customers can personalize this (text/logo)</label>
+      <label class="checkbox-row" style="margin-bottom:18px;"><input type="checkbox" id="pf-featured" /> Feature on homepage</label>
+
+      <div class="field"><label>Description</label><textarea id="pf-description" placeholder="Shown on the product page..."></textarea></div>
+      <div class="field" id="pf-colors-field"><label>Colors (comma separated)</label><input type="text" id="pf-colors" placeholder="Black, White, Orange, Custom" /></div>
+      <div class="field" id="pf-materials-field"><label>Materials (comma separated)</label><input type="text" id="pf-materials" placeholder="PLA, PETG" /></div>
+      <div class="field" id="pf-neon-colors-field" style="display:none;"><label>Neon Colors (comma separated)</label><input type="text" id="pf-neon-colors" placeholder="Purple, Cyan, Pink" /></div>
+      <div class="field"><label>Tags (comma separated)</label><input type="text" id="pf-tags" placeholder="gaming, desk, gift" /></div>
+
+      <div class="field" style="margin-bottom:22px;">
+        <label>Photos</label>
+        <input type="file" id="pf-image-upload" accept="image/*" multiple />
+        <div class="upload-list" id="pf-image-list" style="margin-top:12px;"></div>
+      </div>
+
+      <p class="field-error" id="pf-error" style="display:none;margin-bottom:14px;"></p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="pf-cancel-btn">Cancel</button>
+        <button type="submit" class="btn btn-neon" id="pf-save-btn">SAVE PRODUCT</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="admin-confirm-delete-modal">
+  <div class="modal confirm-modal">
+    <h3>Delete this product?</h3>
+    <p id="admin-delete-product-name">This will remove it from the live catalog. This can't be undone.</p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="admin-delete-cancel-btn">Cancel</button>
+      <button class="btn btn-primary" id="admin-delete-confirm-btn" style="background:var(--error);border-color:var(--error);">Delete</button>
+    </div>
+  </div>
+</div>
 
 <div id="site-footer"></div>
 
@@ -112,5 +215,7 @@
 <script src="js/whatsapp.js"></script>
 <script src="js/app.js"></script>
 <script src="js/admin.js"></script>
+<script src="js/admin-products.js"></script>
+<script src="js/admin-auth.js"></script>
 </body>
 </html>

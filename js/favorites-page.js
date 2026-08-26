@@ -1,9 +1,10 @@
 /**
  * Drives favorites.html — saved products list.
  */
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const grid = qs("#favorites-grid");
   if (!grid) return;
+  await window.productsReady;
   const empty = qs("#favorites-empty");
   const favIds = getFavorites();
   const products = PRODUCTS.filter((p) => favIds.includes(p.id));

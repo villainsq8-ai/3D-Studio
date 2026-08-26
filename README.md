@@ -63,6 +63,53 @@ tool, then bump `CACHE_VERSION` in `sw.js` so installed apps pick up the change.
 
 ---
 
+## 1b. Set up the admin panel (Supabase)
+
+This is what turns `admin.html` into a **real, password-protected panel** where
+you and your partner can add, edit and delete products and prices yourselves —
+no code, no developer needed after this one-time setup. It uses
+[Supabase](https://supabase.com), a free hosting service for exactly this kind
+of small database + login. Free tier is enough for this site's scale — no
+credit card required to start.
+
+This is a one-time job for one of you to do. It takes about 10–15 minutes.
+
+1. **Create a Supabase account** at [supabase.com](https://supabase.com) →
+   "Start your project" → sign up (GitHub or email both work).
+2. **Create a new project**: give it any name (e.g. "3 Studio"), set a database
+   password (Supabase generates one for you — click to reveal it and save it
+   somewhere safe, like a notes app; you won't need it day-to-day, but keep it
+   just in case), and pick the region closest to Kuwait. Click **Create new
+   project** and wait a minute or two while it's provisioned.
+3. **Create the database + login system in one paste**: in the left sidebar,
+   open **SQL Editor** → **New query**. Open the file `supabase/schema.sql`
+   from this project (in GitHub: `supabase/schema.sql`), copy its entire
+   contents, paste into the query box, and click **Run**. This creates the
+   products table, turns on the security rules that let everyone browse the
+   shop but only logged-in users make changes, sets up photo storage, and
+   loads in the products already on the site today — so nothing changes on
+   the live site yet.
+4. **Create your two login accounts**: sidebar → **Authentication** → **Users**
+   → **Add user** → **Create new user**. Enter your email and choose a
+   password, and make sure **"Auto Confirm User"** is switched on (so you can
+   log in immediately, without a confirmation email). Repeat for your
+   partner's email. These are the only two accounts that will ever be able to
+   log into `admin.html` — there's no public sign-up anywhere on the site.
+5. **Copy your project's connection details**: sidebar → **Project Settings**
+   (gear icon) → **API**. You'll need the **Project URL** and the
+   **`anon` `public`** key (a long string) — both are safe to share, they
+   don't grant any access on their own.
+6. **Connect the site to it** — either:
+   - Send me (in this chat) the Project URL and anon key, and I'll paste them
+     into `js/supabase-client.js` and redeploy for you, **or**
+   - Open `js/supabase-client.js` in the repo yourself, replace
+     `"YOUR_SUPABASE_URL"` and `"YOUR_SUPABASE_ANON_KEY"` with your two values,
+     save, commit and push.
+7. **Done.** Reload `admin.html` on the live site, log in with the account you
+   created in step 4, and open the **Products** tab.
+
+---
+
 ## 2. Project structure
 
 ```
@@ -150,7 +197,13 @@ assets/icons/          assets/3d/office/       assets/neon/office/
 
 ## 4. Adding / editing products
 
-All products live in **one file**: `js/products.js`. Each product is a plain object:
+**Recommended: use the admin panel — no code, no redeploying.** Once you've done
+the one-time Supabase setup in §1b, go to `admin.html`, log in, open the
+**Products** tab, and add/edit/delete items and prices directly — changes go
+live on the site within seconds for every visitor, on any device.
+
+Until §1b is set up (or if you'd rather edit code directly), products live in
+**one file**: `js/products.js`. Each product is a plain object:
 
 ```js
 {
@@ -170,13 +223,18 @@ All products live in **one file**: `js/products.js`. Each product is a plain obj
 }
 ```
 
-Add a new object to the `PRODUCTS` array and it automatically appears in the
-homepage featured grids (if `featured: true`), the relevant catalog page, search,
-and gets a working product page at `product.html?id=your-id` — nothing else to wire up.
+Add a new object to the `FALLBACK_PRODUCTS` array and it automatically appears in
+the homepage featured grids (if `featured: true`), the relevant catalog page,
+search, and gets a working product page at `product.html?id=your-id` — nothing
+else to wire up.
 
-**To change a price**, edit the `price` field. **To change delivery cost or the
-free-delivery threshold**, edit `deliveryPrice` / `freeDeliveryThreshold` in
-`js/config.js` (see below).
+**Note:** once Supabase is configured (§1b), the live catalog comes from the
+Supabase `products` table, not from this file — `FALLBACK_PRODUCTS` only matters
+as a safety net if Supabase is ever unreachable. Once you're set up, use the
+admin panel (above) instead of editing this file.
+
+**To change delivery cost or the free-delivery threshold**, edit
+`deliveryPrice` / `freeDeliveryThreshold` in `js/config.js` (see below).
 
 ---
 
@@ -221,8 +279,16 @@ database. That means:
   `admin.html` → change its status or send a quotation → the customer's
   `orders.html` / `order.html` reflects it immediately. That's genuinely working,
   it's just scoped to one browser rather than shared across devices.
-- **`admin.html` has no authentication.** It's a UI/UX prototype only — anyone
-  with the URL can open it. Do not deploy it publicly as-is. See §8.
+- **Orders/cart/favorites are still localStorage-only** — that part hasn't
+  changed. **Products are the exception**: once §1b is set up, the product
+  catalog lives in a real shared Supabase database (not localStorage), so
+  price/catalog changes made in the admin panel are visible to every visitor
+  everywhere, instantly.
+- **`admin.html`'s login is real once §1b is set up** — Supabase Auth, only the
+  two accounts you create yourself can sign in. Until §1b is done, it falls
+  back to its original no-login prototype behavior (Orders tab only) — don't
+  rely on that state for a public launch. See §8 for what's still prototype
+  (orders/cart/checkout).
 
 All order/cart/favorites persistence goes through a small set of functions
 (`getOrders`, `saveOrder`, `updateOrderStatus`, `saveQuotation`, `getCart`,
@@ -243,40 +309,48 @@ Nginx/Apache server. There is no server-side build step — just upload the fold
 
 ## 8. Recommended production architecture (next steps)
 
-To turn this prototype into a live store, the frontend stays essentially as-is;
-you're mainly replacing the `localStorage` calls with real API calls and adding
-three things this prototype intentionally does not include:
+Products and the admin login (§1b) are now backed by a real database —
+that part is done once you complete the Supabase setup. What's left to turn
+the rest of this prototype into a live store:
 
 ```
 Frontend (this project)
         │
-        ├── Supabase / Firebase   → products, orders, custom requests, quotations
-        │                            (replaces localStorage read/write in
-        │                             orders.js, cart.js, custom-orders.js)
+        ├── ✅ Products database    → DONE (§1b) — Supabase table + admin panel
+        │      + admin login
         │
-        ├── Authentication         → customer accounts ("My Orders" tied to a
-        │   (Supabase/Firebase Auth)  real user, not just a browser) AND a
-        │                             protected login for admin.html
+        ├── Orders / cart / custom  → still localStorage — replace with the
+        │   requests / quotations     same Supabase project (add "orders" and
+        │                             "custom_orders" tables, replace the
+        │                             localStorage read/write in orders.js,
+        │                             cart.js, custom-orders.js with Supabase
+        │                             calls, same pattern as products.js)
         │
-        ├── Cloud Storage           → uploaded reference files/images from the
-        │   (Supabase Storage / S3)    custom order form, instead of storing
-        │                              base64 data URLs in localStorage
+        ├── Customer accounts        → optional — ties "My Orders" to a real
+        │   (Supabase Auth)            login instead of just a browser
         │
-        ├── Payment Gateway         → KNET / card / Apple Pay processing.
-        │   (MyFatoorah, Tap, etc.)    checkout.html already has the payment
-        │                              method UI and explicitly does NOT fake
-        │                              card processing — it's structured so a
-        │                              real gateway's redirect/webhook flow
-        │                              slots in where "Place Order" currently
-        │                              writes straight to localStorage.
+        ├── Cloud Storage            → uploaded reference files/images from the
+        │   (Supabase Storage)         custom order form, instead of storing
+        │                              base64 data URLs in localStorage — the
+        │                              product-images bucket from §1b can be
+        │                              reused, or add a second bucket
         │
-        └── WhatsApp Business API   → optional upgrade from wa.me deep links to
-                                        automated order notifications.
+        ├── Payment Gateway          → KNET / card / Apple Pay processing.
+        │   (MyFatoorah, Tap, etc.)     checkout.html already has the payment
+        │                               method UI and explicitly does NOT fake
+        │                               card processing — it's structured so a
+        │                               real gateway's redirect/webhook flow
+        │                               slots in where "Place Order" currently
+        │                               writes straight to localStorage.
+        │
+        └── WhatsApp Business API    → optional upgrade from wa.me deep links to
+                                         automated order notifications.
 ```
 
-Suggested order of work: swap `orders.js`/`cart.js` storage functions for API
-calls → add auth → protect `/admin.html` behind it → move file uploads to cloud
-storage → connect a real payment gateway.
+Suggested order of work: move orders/cart/custom-order storage into the same
+Supabase project (mirroring how products.js now works) → move file uploads to
+Supabase Storage → connect a real payment gateway → optionally add customer
+accounts.
 
 ---
 

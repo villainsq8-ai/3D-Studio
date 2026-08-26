@@ -3,8 +3,13 @@
  * 3d-prints.html, neon.html, product.html, gallery.html and the homepage.
  * purchaseType: "direct" -> Add to Cart works normally.
  * purchaseType: "quote"  -> customer sends a quote request instead of buying directly.
+ *
+ * FALLBACK_PRODUCTS below ships with the site so it keeps working even
+ * before the admin panel's Supabase database is set up. Once configured
+ * (see js/supabase-client.js), PRODUCTS is replaced with live data fetched
+ * from Supabase — see productsReady/loadProducts at the bottom of this file.
  */
-const PRODUCTS = [
+const FALLBACK_PRODUCTS = [
   // ---------------------------------------------------------------- 3D PRINTS
   {
     id: "deck-box-01", type: "3d", category: "deck-boxes",
@@ -202,6 +207,42 @@ const NEON_CONFIG_OPTIONS = {
   mounting: ["Wall Mounted", "Hanging", "Freestanding", "Booth Installation"],
   backboard: ["Clear Acrylic", "Black Acrylic", "Cut-to-Shape", "No Backboard"],
 };
+
+let PRODUCTS = FALLBACK_PRODUCTS;
+
+function mapProductRow(row) {
+  return {
+    id: row.id, type: row.type, category: row.category, name: row.name,
+    price: row.price, purchaseType: row.purchase_type, customizable: row.customizable,
+    featured: row.featured, rating: row.rating, reviews: row.reviews,
+    images: row.images || [], colors: row.colors || [], materials: row.materials || [],
+    neonColors: row.neon_colors || [], description: row.description, tags: row.tags || [],
+  };
+}
+
+/**
+ * Resolves once the live catalog has been fetched from Supabase (or
+ * immediately, if the admin panel hasn't been set up yet / the fetch
+ * fails — in either case PRODUCTS just keeps its FALLBACK_PRODUCTS value).
+ * Anything that reads PRODUCTS at page load should `await window.productsReady`
+ * first so it sees the live catalog rather than a stale one.
+ */
+async function loadProducts() {
+  if (!window.supabaseClient) return;
+  try {
+    const { data, error } = await window.supabaseClient
+      .from("products")
+      .select("*")
+      .order("created_at", { ascending: true });
+    if (error || !data || !data.length) return;
+    PRODUCTS = data.map(mapProductRow);
+  } catch (err) {
+    // Network/Supabase unreachable — silently keep the built-in fallback catalog.
+  }
+}
+
+window.productsReady = loadProducts();
+window.reloadProducts = loadProducts;
 
 function getProductById(id) { return PRODUCTS.find((p) => p.id === id); }
 function getRelatedProducts(product, count) {

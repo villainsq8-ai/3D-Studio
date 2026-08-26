@@ -270,11 +270,12 @@ function wireHeaderAndDrawers() {
   scrollBtn?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 }
 
-function renderSearchResults(query) {
+async function renderSearchResults(query) {
   const results = qs("#search-results");
   if (!results) return;
   query = (query || "").trim().toLowerCase();
   if (!query) { results.innerHTML = `<p class="search-hint">Try: deck box, car holder, gaming, neon, office logo</p>`; return; }
+  await window.productsReady;
   const matches = PRODUCTS.filter((p) => {
     const haystack = `${p.name} ${p.category} ${(p.tags || []).join(" ")}`.toLowerCase();
     return haystack.includes(query);
