@@ -4,9 +4,10 @@
  * this script runs.
  */
 (function () {
-  function init() {
+  async function init() {
     const grid = qs("#listing-grid");
     if (!grid || !window.LISTING_TYPE) return;
+    await window.productsReady;
 
     const tabsWrap = qs("#category-tabs");
     const resultCount = qs("#result-count");

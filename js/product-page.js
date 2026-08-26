@@ -342,8 +342,9 @@
     qs("main").innerHTML = `<div class="container"><div class="empty-state"><p class="empty-title">Product not found</p><p class="empty-sub">This product may have been removed or the link is incorrect.</p><a href="3d-prints.html" class="btn btn-primary">Browse Products</a></div></div>`;
   }
 
-  function init() {
+  async function init() {
     if (!qs("#gallery-main-img")) return;
+    await window.productsReady;
     const id = getParam("id");
     product = getProductById(id);
     if (!product) { notFound(); return; }

@@ -180,9 +180,10 @@
     renderDetail(order);
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
+  /** Called by admin-auth.js once the dashboard is unlocked (or immediately if Supabase isn't set up yet). */
+  window.initAdminOrders = function () {
     if (!qs("#admin-stats")) return;
     const id = getParam("id");
     if (id) initDetail(id); else initList();
-  });
+  };
 })();
