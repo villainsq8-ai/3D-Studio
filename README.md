@@ -90,11 +90,18 @@ This is a one-time job for one of you to do. It takes about 10–15 minutes.
    loads in the products already on the site today — so nothing changes on
    the live site yet.
 4. **Create your two login accounts**: sidebar → **Authentication** → **Users**
-   → **Add user** → **Create new user**. Enter your email and choose a
+   → **Add user** → **Create new user**. The login screen on `admin.html`
+   just asks for a **username** (not an email), so when Supabase asks for an
+   "Email" here, type your chosen username followed by `@3studio.local` — for
+   example, if your username is `ali`, enter `ali@3studio.local`. Pick a
    password, and make sure **"Auto Confirm User"** is switched on (so you can
    log in immediately, without a confirmation email). Repeat for your
-   partner's email. These are the only two accounts that will ever be able to
-   log into `admin.html` — there's no public sign-up anywhere on the site.
+   partner (e.g. `sara@3studio.local`). Day-to-day, you'll each just type
+   your plain username (`ali`, `sara`, ...) and password on the login screen
+   — the `@3studio.local` part is only something you type once, here, while
+   creating the account. These are the only two accounts that will ever be
+   able to log into `admin.html` — there's no public sign-up anywhere on the
+   site.
 5. **Copy your project's connection details**: sidebar → **Project Settings**
    (gear icon) → **API**. You'll need the **Project URL** and the
    **`anon` `public`** key (a long string) — both are safe to share, they
